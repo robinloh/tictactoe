@@ -1,5 +1,9 @@
 package com.zendesk.tictactoe;
 
+/**
+ * Utilities.java
+ * To store the important symbols used in this program.
+ */
 public class Utilities {
 
     public static final String HORIZONTAL = "-";

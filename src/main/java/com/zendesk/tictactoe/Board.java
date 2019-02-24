@@ -5,73 +5,105 @@ import com.zendesk.tictactoe.exceptions.IndexOutOfBoundException;
 
 public class Board {
 
-    private int boardSize;          // Size of the board
-    private int emptyBoxes;         // Number of empty boxes left in the board
-    private static Box[][] board;   // 2D array representation of the board
+    // Size of the board
+    private int boardSize;
+
+    // Number of empty boxes left in the board
+    private int emptyBoxes;
+
+    // 2D array representation of the board
+    private static Box[][] board;
 
 
+    // Constructor - with board size
     public Board(int boardSize) {
         this.boardSize = boardSize;
         this.emptyBoxes = this.boardSize * this.boardSize;
         initBoard(boardSize);
     }
 
+    /**
+     * Return the number of empty boxes left in the board
+     *
+     * @return emptyBoxes - Number of empty boxes left in the board
+     */
     public int getEmptyBoxes() {
         return this.emptyBoxes;
     }
 
+    /**
+     * Return the board size
+     * @return boardSize - board size
+     */
     public int getBoardSize() {
         return boardSize;
     }
 
+    /**
+     * Return the current board
+     *
+     * @return board - The current board
+     */
     public static Box[][] getBoard() {
         return board;
     }
 
     /**
      * Sets index to each box in the board. (By default)
+     *
      * @param boardSize - Size of the board
      */
     private void initBoard(int boardSize) {
 
         board = new Box[boardSize][boardSize];
 
+        // Set the indexes to each box in the board
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
                 board[i][j] = new Box(i * boardSize + j + 1);
             }
         }
 
-        printBoard();   // Print board after initialising the indexes
+        // Print board after initialising the indexes
+        printBoard();
     }
 
     /**
      *  Prints the entire board in the current state.
      */
     public void printBoard() {
+
         for (int i = 0; i < this.boardSize; i++) {
+
+            // Print out the entire row
             String row = getRowFromBoard(board[i]);
-            System.out.println(row);    // Print out the box once the index and space/border is ready.
+            System.out.println(row);
+
+            // Print the horizontal border
             printHorizontalBorder(i, row);
         }
     }
 
     /**
      * Print horizontal border given the row number and the row in String format.
+     *
      * @param i - Row number
      * @param row - Row in String format
      */
     private void printHorizontalBorder(int i, String row) {
+
         if (i != this.boardSize - 1) {
             for (int j = 0; j < row.length() - 1; j++) {
                 System.out.print(Utilities.HORIZONTAL);
             }
         }
+
         System.out.println();
     }
 
     /**
      * Retrieves the contents in each cell for a row and output as a String.
+     *
      * @param boxes - The row given to retrieve each box.
      * @return row - The row of the cell in String format.
      */
@@ -81,6 +113,7 @@ public class Board {
 
         for (int j = 0; j < this.boardSize; j++) {
 
+            // Append the contents in each box (with spaces beside) to the row
             row += Utilities.SPACE + getBoxPieceInString(boxes[j]) + Utilities.SPACE;
 
             // Print vertical space or vertical border.
