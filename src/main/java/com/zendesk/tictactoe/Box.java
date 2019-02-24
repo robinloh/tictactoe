@@ -1,16 +1,21 @@
 package com.zendesk.tictactoe;
 
+/**
+ *  Box.java
+ *  This class stores the properties of each cell in the board.
+ */
 public class Box {
 
-    private boolean isUpdated;
-    private char piece;
+    private boolean isUpdated;      // Determines if the cell has been updated before. Default - false
+    private String piece;           // Records the player's piece (or the index by default if the box was untouched)
+
 
     public Box(int index) {
-        this.piece = (char) (index + '0');
+        this.piece = Integer.toString(index);
         this.isUpdated = false;
     }
 
-    public Box(char piece) {
+    public Box(String piece) {
         this.piece = piece;
         this.isUpdated = true;
     }
@@ -19,7 +24,7 @@ public class Box {
         return isUpdated;
     }
 
-    public char getPiece() {
+    public String getPiece() {
         return piece;
     }
 }
